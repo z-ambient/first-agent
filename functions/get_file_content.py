@@ -3,18 +3,18 @@ import os
 MAX_CHARS = 10000
 
 
-def get_file_content(working_pathectory, file_path):
+def get_file_content(working_path, file_path):
     try:
-        working_pathectory = os.path.abspath(working_pathectory)
+        working_path = os.path.abspath(working_path)
 
         target_path = os.path.normpath(
-            os.path.join(working_pathectory, file_path))
+            os.path.join(working_path, file_path))
 
         valid_target_path = os.path.commonpath(
-            [working_pathectory, target_path]) == working_pathectory
+            [working_path, target_path]) == working_path
 
         if not valid_target_path:
-            return f'Error: Cannot read "{file_path}" as it is outside the permitted working_pathectory'
+            return f'Error: Cannot read "{file_path}" as it is outside the permitted working_path'
 
         if not os.path.isfile(target_path):
             return f'Error: "{file_path}" is not a file'
