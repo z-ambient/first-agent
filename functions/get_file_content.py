@@ -1,6 +1,23 @@
 import os
+from google.genai import types
 
 MAX_CHARS = 10000
+
+
+schema_get_files_content = types.FunctionDeclaration(
+    name="get_file_content",
+    description="Read contents of files in a specified directory relative to the working directory",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        required=["file_path"],
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="The path to the file you can read",
+            ),
+        },
+    ),
+)
 
 
 def get_file_content(working_path, file_path):
