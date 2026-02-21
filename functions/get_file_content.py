@@ -20,18 +20,18 @@ schema_get_files_content = types.FunctionDeclaration(
 )
 
 
-def get_file_content(working_path, file_path):
+def get_file_content(working_directory, file_path):
     try:
-        working_path = os.path.abspath(working_path)
+        working_directory = os.path.abspath(working_directory)
 
         target_path = os.path.normpath(
-            os.path.join(working_path, file_path))
+            os.path.join(working_directory, file_path))
 
         valid_target_path = os.path.commonpath(
-            [working_path, target_path]) == working_path
+            [working_directory, target_path]) == working_directory
 
         if not valid_target_path:
-            return f'Error: Cannot read "{file_path}" as it is outside the permitted working_path'
+            return f'Error: Cannot read "{file_path}" as it is outside the permitted working_directory'
 
         if not os.path.isfile(target_path):
             return f'Error: "{file_path}" is not a file'
